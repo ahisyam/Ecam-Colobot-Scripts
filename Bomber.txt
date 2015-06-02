@@ -10,14 +10,14 @@ extern void object::Bomber()
 		
 		while(energyCell.energyLevel > 0.5)
 		{
-			target = radar(AlienWorm);
+			target = radar(AlienWorm); //find the alien. You can use array to define all enemies instead
 			errmode(0);
 			
-			while(target != null)
+			while(target != null) //if can't find target
 			{
 				errmode(0);
 				
-				SeaLevelTemp();
+				SeaLevelTemp(); //run sea level check to avoid diving into the sea
 				
 				//Check power level
 				if(energyCell.energyLevel < 0.4)
@@ -26,23 +26,23 @@ extern void object::Bomber()
 					RechargeSelf();
 				}
 				
-				target = radar(AlienWorm);
-				turn(direction(target.position));
-				while(position.z < 13) //Maintain set altitude by fly outward
+				target = radar(AlienWorm); //search for target
+				turn(direction(target.position)); //point toward target
+				while(position.z < 13) //Maintain set altitude by flying up
 				{
 					jet(0.5);
 				}
-				while(distance(position , target.position) > 40)
+				while(distance(position , target.position) > 40) //fly toward target and point to it
 				{
 					SeaLevelTemp();
 					turn(direction(target.position));
 					motor(1,1);
 				}
-				motor(0,0);
-				turn(direction(target.position));
-				aim(-20);
+				motor(0,0); //stop and hover
+				turn(direction(target.position)); //turn toward target
+				aim(-20); //aim lower
 				fire(0.4);
-				SeaLevelTemp();
+				SeaLevelTemp(); //check sea level
 				
 				
 			}
