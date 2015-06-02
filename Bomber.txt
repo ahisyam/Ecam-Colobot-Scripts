@@ -1,0 +1,73 @@
+extern void object::Bomber()
+{
+	object target; //set target
+	float doa; //direction of attack
+	boolean enemy;
+	
+	while(true)
+	{
+		
+		
+		while(energyCell.energyLevel > 0.5)
+		{
+			target = radar(AlienWorm);
+			errmode(0);
+			
+			while(target != null)
+			{
+				errmode(0);
+				
+				SeaLevelTemp();
+				
+				//Check power level
+				if(energyCell.energyLevel < 0.4)
+				{
+					SeaLevelTemp();
+					RechargeSelf();
+				}
+				
+				target = radar(AlienWorm);
+				turn(direction(target.position));
+				while(position.z < 13) //Maintain set altitude by fly outward
+				{
+					jet(0.5);
+				}
+				while(distance(position , target.position) > 40)
+				{
+					SeaLevelTemp();
+					turn(direction(target.position));
+					motor(1,1);
+				}
+				motor(0,0);
+				turn(direction(target.position));
+				aim(-20);
+				fire(0.4);
+				SeaLevelTemp();
+				
+				
+			}
+			
+			SeaLevelTemp();
+			wait(5);
+		}
+		
+		if(energyCell.energyLevel < 0.5)
+		{
+			SeaLevelTemp();
+			RechargeSelf();
+		}
+		
+		
+	}
+	
+	
+	
+	
+}
+
+
+
+
+
+
+

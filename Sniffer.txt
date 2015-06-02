@@ -1,0 +1,22 @@
+extern void object::Sniffer()
+{
+	int a;
+	a = 0;
+	while( a < 21)
+	{
+		move(2);
+		sniff();
+		a = a++;
+		if( a == 10)
+		{
+			turn(-90);
+		}
+		if( a == 20)
+		{
+			turn(90);
+			a = 0;
+		}
+	}
+}
+
+

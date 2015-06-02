@@ -1,0 +1,23 @@
+extern public void object::SeaLevelTemp()
+{
+	float sea;
+	float randomangle;
+	while(this.temperature > 0.5)
+	{
+		sea = topo(position);
+		if(sea > 0)
+		{
+			jet(-0.8);
+			wait(4);
+		}
+		else
+		{
+			randomangle = rand()*360;
+			turn(randomangle);
+			motor(1,1);
+			wait(4);
+			motor(0,0);
+		}
+		
+	}
+}

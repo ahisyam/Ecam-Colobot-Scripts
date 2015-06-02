@@ -1,0 +1,55 @@
+extern void object::Interceptor()
+{
+	object wasp;
+	float aoa;
+	
+	while(position.z < 10)
+	{
+		jet(0.5);
+	}
+	
+	while(true)
+	{
+		wasp = radar(AlienWasp);
+		aoa = direction(wasp.position);
+		
+		turn(aoa);
+		motor(1,1);
+		
+		if(position.z > wasp.position.z)
+		{
+			jet(-0.3);
+			wait(0.2);
+		}
+		
+		if(position.z < wasp.position.z -1)
+		{
+			jet(0.3);
+			wait(0.2);
+		}
+		
+		if(distance(position , wasp.position) <40)
+		{
+			wasp = radar(AlienWasp,0,360,0,500,1);
+			aoa = direction(wasp.position);
+			jet(0);
+			turn(aoa);
+			motor(1,1);
+			
+			if(distance(position , wasp.position) <30)
+			{
+				if (aoa < 0)
+				{
+					motor(1,0.5);
+				}
+				else
+				{
+					motor(0.5,1);
+				}
+				aim(0);
+				fire(1);
+			}
+			
+		}
+	}
+}

@@ -1,0 +1,43 @@
+extern void object::FindnRefuel()
+{
+	while(true)
+	{
+		object robot1;
+		object robot2;
+		float random;
+		float randoangle;
+		
+		errmode(0);
+		
+		if(energyCell.energyLevel < 0.3)
+		{
+			RechargeSelf();
+		}
+		
+		robot1 = radar(WingedShooter);
+		robot2 = radar(WheeledGrabber);
+		
+		if(robot1.energyLevel < 0.1)
+		{
+			goto(robot1.position);
+			grab();
+			RechargeSelf();
+			goto(robot1.position);
+			drop();
+		}
+
+		if(robot2.energyLevel < 0.1)
+		{
+			goto(robot2.position);
+			grab();
+			RechargeSelf();
+			goto(robot2.position);
+			drop();
+		}
+		
+	}
+}
+
+
+
+

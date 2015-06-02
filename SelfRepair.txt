@@ -1,0 +1,15 @@
+extern public void object::SelfRepair()
+{
+	point  start;          // variable for initial pos.
+	object item;           // info. about power station
+	
+	start = position;      // store initial position
+	
+	item = radar(RepairCenter); // look for station
+	goto(item.position);   // go to the power station
+	wait(10);               // wait 5 seconds
+	
+	goto(start);           // go back to initial pos.
+	
+	
+}

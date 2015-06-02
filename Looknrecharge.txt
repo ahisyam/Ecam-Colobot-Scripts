@@ -1,0 +1,42 @@
+extern void object::LooknRecharge()
+{
+	object depletedcell;         
+	object rechargestation;          
+	float random;
+	float randoangle;
+	object flag;
+	
+	while(true)
+	{
+		
+		depletedcell = radar(PowerCell);
+		rechargestation = radar(PowerStation); 
+		errmode(0);
+
+		if(depletedcell.energyLevel <0.4)
+		{
+			message("Depleted Powercell detected",DisplayInfo);
+			goto(depletedcell.position);
+			grab();
+			goto(rechargestation.position);  
+			
+			while ( depletedcell.energyLevel < 1 )
+			{
+				wait(1);            // wait until recharged
+			}
+			
+			flag = radar(GreenFlag);
+			goto(flag.position);
+			random = rand() + 3;
+			randoangle = rand()*360;
+			turn(randoangle);
+			move(random);
+			drop();
+			message("Recharge completed",DisplayInfo);
+		}
+		if(energyCell.energyLevel < 0.3)
+		{
+			RechargeSelf();
+		}
+	}
+}

@@ -1,0 +1,28 @@
+extern void object::CollectTitanium()
+{
+	object item;         
+	float random;
+	float randoangle;
+	object flag;
+	
+	while(true)
+	{
+		errmode(0);
+		item = radar(Titanium);
+		message("Titanium detected",DisplayInfo);
+		goto(item.position);
+		grab();
+		flag = radar(GreenFlag);
+		goto(flag.position);
+		random = rand()*10;
+		randoangle = rand()*360;
+		turn(randoangle);
+		move(random);
+		drop();
+	}
+	if(energyCell.energyLevel < 0.3)
+	{
+		RechargeSelf();
+	}
+}
+

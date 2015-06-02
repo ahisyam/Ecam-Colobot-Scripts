@@ -1,0 +1,39 @@
+extern void object::SearchOrenProcess()
+{
+	
+	while(true)
+	{
+		
+		object ore;
+		object oreconvtr;
+		object flag;
+		float random;
+		float randoangle;
+		errmode(0);
+		
+		ore = radar(TitaniumOre);
+		oreconvtr = radar(Converter);
+		
+		goto(ore.position);
+		grab();
+		goto(oreconvtr.position);
+		drop();
+		move(-2.5);
+		wait(15);
+		move(2);
+		grab();
+		flag = radar(VioletFlag);
+		goto(flag.position);
+		random = rand() + 3;
+		randoangle = rand()*360;
+		turn(randoangle);
+		move(random);
+		drop();
+		
+		if(energyCell.energyLevel < 0.3)
+		{
+			RechargeSelf();
+		}
+		
+	}
+}
